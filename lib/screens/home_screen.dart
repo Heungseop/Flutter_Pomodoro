@@ -10,8 +10,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const TOTAL_SECONDS = 1500;
-  int totalSeconds = TOTAL_SECONDS;
+  static const constToTalseconds = 1500;
+  int totalSeconds = constToTalseconds;
   bool isRunning = false;
   int totalPomodoros = 0;
   late Timer timer;
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         totalPomodoros += 1;
         isRunning = false;
-        totalSeconds = TOTAL_SECONDS;
+        totalSeconds = constToTalseconds;
       });
       timer.cancel();
     } else {
@@ -68,13 +68,34 @@ class _HomeScreenState extends State<HomeScreen> {
             flex: 1,
             child: Container(
               alignment: Alignment.bottomCenter,
-              child: Text(
-                format(totalSeconds),
-                style: TextStyle(
-                  color: Theme.of(context).cardColor,
-                  fontSize: 60,
-                  fontWeight: FontWeight.w600,
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    color: const Color(0xffffffff).withOpacity(0),
+                    icon: const Icon(Icons.refresh_outlined),
+                  ),
+                  Text(
+                    format(totalSeconds),
+                    style: TextStyle(
+                      color: Theme.of(context).cardColor,
+                      fontSize: 60,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        onPausePressed();
+
+                        setState(() {
+                          totalSeconds = constToTalseconds;
+                        });
+                      },
+                      color: Theme.of(context).cardColor,
+                      icon: const Icon(Icons.refresh_outlined))
+                ],
               ),
             ),
           ),
