@@ -1,4 +1,4 @@
-name: Gh-Pages
+name: flutter_pomodoro
 
 on:
   push:
